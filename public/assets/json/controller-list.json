@@ -17,9 +17,9 @@
       ]
     },
     {
-      "name": "Power Controller 2",
+      "name": "Power Controller 21",
       "url": "http://controller-2.local",
-      "id": 2,
+      "id": 21,
       "channels": [
         { "name": "Channel 1", "number": 1, "state": true },
         { "name": "Channel 2", "number": 2, "state": true },
@@ -29,9 +29,9 @@
       ]
     },
     {
-      "name": "Power Controller 3",
+      "name": "Power Controller 31",
       "url": "http://controller-3.local",
-      "id": 3,
+      "id": 31,
       "channels": [
         { "name": "Channel 1", "number": 1, "state": true },
         { "name": "Channel 2", "number": 2, "state": true },

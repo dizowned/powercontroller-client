@@ -1,5 +1,7 @@
 import { Component, model, input, OnInit } from '@angular/core';
 import { PowerControllerService } from '../../services/powercontroller-service';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { of } from 'rxjs';
 @Component({
   standalone: true,
   selector: 'app-channel',
@@ -19,25 +21,34 @@ export class ChannelComponent{
   }
 
 
-  updateChannel(): boolean{
+  updateChannel(){
     console.log("Updating channel: " + "Controller ID: "+this.controllerId() + ", Channel No. " + this.channelNo() + ", Channel Name:" + this.channelName() + ", New State: " + this.channelEnabled());
-    return this.powerControllerService.setChannelState(this.controllerId(), this.channelNo(), this.channelEnabled());
+    this.powerControllerService.setChannelState(this.controllerId(), this.channelNo(), !this.channelEnabled()).pipe(
+      catchError( err => {
+        console.error(` - Error updating channel state on server:`, err);
+        return of({ success: false, state: this.channelEnabled(), error: err.message });
+      })
+    ).subscribe( response => {
+      console.log(` - Server response:`, response);
+      if(response.success && response.error == null){
+        this.channelEnabled.set(!this.channelEnabled());
+        console.info(` - Channel state updated successfully on server: Controller ID ${this.controllerId()}, Channel No ${this.channelNo()}, State: ${this.channelEnabled()}`);
+        //this.powerControllerService.updateControllerChannelState(this.controllerId(), this.channelNo(), this.channelEnabled());
+        return of({ success: true, state: this.channelEnabled(), error: null });
+      } else {
+        console.warn(` - Failed to update channel state on server: Controller ID ${this.controllerId()}, Channel No ${this.channelNo()}`);
+        return of({ success: false, state: this.channelEnabled(), error: response.error });
+      }
+    });;
   }
 
   toggleChannel() {
-    console.log("Toggling channel: " + "Controller ID: "+this.controllerId() + ", Channel No. " + this.channelNo() + ", Channel Name:" + this.channelName());
-    this.channelEnabled.set(!this.channelEnabled());
+    console.log("Attempting to Toggle: " + "Controller ID: "+this.controllerId() + ", Channel No. " + this.channelNo() + ", Channel Name:" + this.channelName());
     if (this.controllerId() == null || this.channelNo() == null) {
-     console.warn('ControllerId or channelNo missing; reverting state ');
-      this.channelEnabled.set(!this.channelEnabled());
+     console.error('ControllerId or channelNo missing; reverting state ');
       return;
     }
-    if (this.updateChannel()){
-      console.log(this.channelName() + ' toggled to: ' + (this.channelEnabled() ? 'enabled' : 'disabled'));
-    } else {
-      console.warn('Failed to update channel state on server; reverting state ');
-      this.channelEnabled.set(!this.channelEnabled());
-    }
+    this.updateChannel()
   }
 
   turnOn() {
