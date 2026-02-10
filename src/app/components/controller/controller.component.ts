@@ -79,6 +79,7 @@ export class Controller implements OnInit, OnChanges {
               next: (ChannelUpdate) => {
                 console.log('Channel Update: ' + ChannelUpdate.success);
                 this.channels[index].state = true;
+                this.cdr.detectChanges();
               },
               error: (error) => {
                 console.error(
@@ -90,7 +91,6 @@ export class Controller implements OnInit, OnChanges {
         }
       }
     }
-    this.cdr.detectChanges();
   }
 
   toggleAllOff() {
@@ -107,6 +107,7 @@ export class Controller implements OnInit, OnChanges {
             next: (ChannelUpdate) => {
               console.log('Channel Update: ' + ChannelUpdate.success);
               this.channels[index].state = false;
+              this.cdr.detectChanges();
             },
             error: (error) => {
               console.error(
@@ -119,6 +120,5 @@ export class Controller implements OnInit, OnChanges {
       }
       console.log('All channels toggled off.');
     }
-    this.cdr.detectChanges();
   }
 }
