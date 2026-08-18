@@ -1,6 +1,6 @@
 <mat-toolbar class="mat-elevation-z4">
   <button mat-icon-button (click)="toggleSidenav()">
-    <mat-icon matListItemIcon>menu</mat-icon>
+    <mat-icon matListItemIcon svgIcon="menu"></mat-icon>
   </button>
   <span> {{ title() }}</span>
 </mat-toolbar>
@@ -9,16 +9,16 @@
     @if(isExpanded()) {
     <mat-nav-list>
       <mat-list-item (click)="this.toggleMenu()">
-        <mat-icon matListItemIcon [ngClass]="{'rotated' : showMenu() }">expand_more</mat-icon>
+        <mat-icon matListItemIcon svgIcon="expand_more" [ngClass]="{'rotated' : showMenu() }"></mat-icon>
         <span matListItemTitle class="full-width">Menu</span>
       </mat-list-item>
       <div class="sidenav-menu" [ngClass]="{'expanded' : showMenu() }">
         <a mat-list-item href="/">
-          <mat-icon matListItemIcon>home</mat-icon>
+          <mat-icon matListItemIcon svgIcon="home"></mat-icon>
           <span matListItemTitle>Home</span>
         </a>
         <a mat-list-item href="/configuration">
-          <mat-icon matListItemIcon>settings</mat-icon>
+          <mat-icon matListItemIcon svgIcon="settings"></mat-icon>
           <span matListItemTitle>Settings</span>
         </a>
       </div>
@@ -29,5 +29,4 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
 
