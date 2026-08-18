@@ -1,0 +1,13 @@
+.channel_list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.channel_list tr {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.channel_list td {
+  display: flex;
+}

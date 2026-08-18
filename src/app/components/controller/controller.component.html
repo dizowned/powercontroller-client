@@ -6,18 +6,18 @@
   <div align="center" class="channel_list">
     <table>
       <tr>
-        <td>
         @for (controller_channel of controller()?.channels; track $index) {
-          <app-channel
-            [(channelName)]="controller_channel['name']"
-            [(channelNo)]="controller_channel['number']"
-            [(channelEnabled)]="controller_channel['state']"
-            [buttonColor]="controller_channel['state'] ? 'green' : 'red'"
-            [controllerId]="controller()!.id"
-            >
-          </app-channel>
+          <td>
+            <app-channel
+              [(channelName)]="controller_channel['name']"
+              [(channelNo)]="controller_channel['number']"
+              [(channelEnabled)]="controller_channel['state']"
+              [buttonColor]="controller_channel['state'] ? 'green' : 'red'"
+              [controllerId]="controller()!.id"
+              >
+            </app-channel>
+          </td>
         }
-        </td>
       </tr>
     </table>
   </div>
