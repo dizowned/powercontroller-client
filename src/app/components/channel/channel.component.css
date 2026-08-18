@@ -10,3 +10,20 @@
   font-size: medium;
   width: 100px;
 }
+
+.channel-btn {
+  min-width: 120px;
+  padding: 10px 28px;
+  margin: 8px;
+  border: none;
+  border-radius: 50px;
+  font-size: medium;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.channel-btn:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}

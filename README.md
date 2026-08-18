@@ -117,6 +117,7 @@ To modify the local controller data, edit `public/assets/json/controller-list.js
 - ✅ Add new controllers via configuration page
 - ✅ Dual-source data loading (local + remote)
 - ✅ Responsive Material UI design
+- ✅ Pill-shaped channel buttons with drop shadow and spacing
 - ✅ Real-time channel state management
 - ✅ Error handling with fallback to empty arrays
 
@@ -139,7 +140,7 @@ Both HTTP sources (local JSON and server API) have error handling that returns e
 
 ## 📝 Version
 
-v0.3.0
+v0.3.1
 
 ## 📄 License
 

@@ -6,8 +6,10 @@
 .channel_list tr {
   display: flex;
   flex-wrap: wrap;
+  gap: 12px;
 }
 
 .channel_list td {
   display: flex;
+  padding: 6px;
 }
